@@ -28,5 +28,15 @@ out=$(echo "Warframe" | ./randpick)
 [ "$?" = 0 ] || ng "$LINENO"
 [ "${out}" = "Warframe" ] || ng "$LINENO"
 
+### EMPTY LINE ###
+out=$(printf 'Warframe\n\n原神\n\nMinecraft\n' | ./randpick)
+[ "$?" = 0 ] || ng "$LINENO"
+[ "${out}" = "Warframe" ] || [ "${out}" = "原神" ] || [ "${out}" = "Minecraft" ] || ng "$LINENO"
+
+### ONLY EMPTY LINES ###
+out=$(printf '\n\n\n' | ./randpick)
+[ "$?" = 1 ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
+
 [ "${res}" = 0 ] && echo OK
 exit $res

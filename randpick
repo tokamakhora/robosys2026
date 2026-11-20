@@ -5,7 +5,7 @@
 import sys
 import random
 
-lines = sys.stdin.readlines()
+lines = [line.rstrip() for line in sys.stdin if line.strip()]
 
 if not lines:
     sys.exit(1)
