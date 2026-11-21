@@ -5,9 +5,33 @@
 import sys
 import random
 
-lines = sys.stdin.read().split()
+# オプションの確認
+number = 1
 
-if not lines:
+if len(sys.argv) == 1:
+    pass
+elif len(sys.argv) == 3 and sys.argv[1] in ("-n", "--number"):
+    try:
+        number = int(sys.argv[2])
+    except ValueError:
+        sys.exit(1)
+else:
     sys.exit(1)
 
-print(random.choice(lines).rstrip())
+# 選ぶ個数の確認
+if number <= 0:
+    sys.exit(1)
+
+# 標準入力から候補を取得
+lines = sys.stdin.read().split()
+
+# 候補がない、または指定個数が多すぎる場合は終了
+if not lines or number > len(lines):
+    sys.exit(1)
+
+# 重複なしでランダムに選択
+selected = random.sample(lines, number)
+
+# 結果を標準出力に表示
+for item in selected:
+    print(item)
