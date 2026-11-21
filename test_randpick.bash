@@ -38,5 +38,10 @@ out=$(printf '\n\n\n' | ./randpick)
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
+### SPACE SEPARATED INPUT ###
+out=$(echo "Warframe 原神 Minecraft" | ./randpick)
+[ "$?" = 0 ] || ng "$LINENO"
+[ "${out}" = "Warframe" ] || [ "${out}" = "原神" ] || [ "${out}" = "Minecraft" ] || ng "$LINENO"
+
 [ "${res}" = 0 ] && echo OK
 exit $res
